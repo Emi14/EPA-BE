@@ -1,5 +1,7 @@
 package com.epa.team.dashboard.utils.mapper;
 
+import com.epa.team.dashboard.model.User;
+import com.epa.team.dashboard.resource.UserResource;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
@@ -14,6 +16,8 @@ public class Mapper extends ConfigurableMapper {
     public void init() {
         final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
 
+        mapperFactory.classMap(User.class, UserResource.class)
+                .byDefault();
 
     }
 
