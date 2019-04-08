@@ -4,21 +4,18 @@ import com.epa.team.dashboard.model.User;
 import com.epa.team.dashboard.resource.UserResource;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
-import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 @Component
 public class Mapper extends ConfigurableMapper {
 
-    @PostConstruct
-    public void init() {
-        final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+    protected void configure(MapperFactory factory) {
 
-        mapperFactory.classMap(User.class, UserResource.class)
-                .byDefault();
+        factory.classMap(User.class, UserResource.class)
+                .byDefault()
+                .register();
 
     }
+
 
 }

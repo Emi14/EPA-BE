@@ -21,11 +21,11 @@ public class UserService {
     @Autowired
     private Mapper mapper;
 
-    public List<UserResource> getAllUserResources (){
+    public List<UserResource> getAllUserResources() {
         return mapper.mapAsList(userRepository.findAll(), UserResource.class);
     }
 
-    public UserResource getUserResourceById(Long userId){
+    public UserResource getUserResourceById(Long userId) {
         return mapper.map(userRepository.findById(userId), UserResource.class);
     }
 
