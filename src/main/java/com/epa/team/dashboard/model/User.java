@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,7 +40,8 @@ public class User {
     private String password;
 
     @Column(name = "role")
-    private UserRole role;
+    @Enumerated(EnumType.STRING)
+    protected UserRole role;
 
     @Column(name = "days_off")
     private long daysOff;
@@ -46,7 +49,7 @@ public class User {
     @Column(name = "work_home")
     private boolean workFromHome;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<VacationRequest> vacationRequests;
 
 

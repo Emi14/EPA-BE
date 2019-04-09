@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,9 +42,11 @@ public class VacationRequest {
     private Date endDate;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private VacationRequestStatus vacationRequestStatus;
 
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private VacationRequestType vacationRequestType;
 
     @ManyToOne(fetch = FetchType.LAZY)
