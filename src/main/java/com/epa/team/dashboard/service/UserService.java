@@ -3,11 +3,14 @@ package com.epa.team.dashboard.service;
 import com.epa.team.dashboard.model.User;
 import com.epa.team.dashboard.repository.IUserRepository;
 import com.epa.team.dashboard.resource.UserResource;
+import com.epa.team.dashboard.resource.VacationRequestResource;
 import com.epa.team.dashboard.utils.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by Ionut Emanuel Mihailescu on 4/3/19.
@@ -22,11 +25,27 @@ public class UserService {
     private Mapper mapper;
 
     public List<UserResource> getAllUserResources() {
-        return mapper.mapAsList(userRepository.findAll(), UserResource.class);
+        return userRepository.findAll().stream()
+                .map(this::enrichUserResourceWithVacationRequestResources)
+                .collect(Collectors.toList());
     }
 
     public UserResource getUserResourceById(Long userId) {
-        return mapper.map(userRepository.findById(userId), UserResource.class);
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if(userOptional.isPresent()){
+            User user = userOptional.get();
+            return enrichUserResourceWithVacationRequestResources(user);
+        }
+
+        return null;//todo refactor this in order to throw an error
+
+    }
+
+    private UserResource enrichUserResourceWithVacationRequestResources(User user) {
+        UserResource userResource = mapper.map(user, UserResource.class);
+        userResource.setVacationRequests(mapper.mapAsList(user.getVacationRequests(), VacationRequestResource.class));
+        return userResource;
     }
 
     public UserResource saveUser(UserResource userResource) {

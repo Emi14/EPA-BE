@@ -38,17 +38,17 @@ public class VacationRequestController {
     @RequestMapping(value = "/getAll/{userId}", method = RequestMethod.GET)
     public ResponseEntity<List<VacationRequestResource>> getAllVacationRequestsByUserId(
             @PathVariable(name = "userId") Long userId,
-            @RequestParam(name = "onlyApproved", required = false, defaultValue = "true") boolean onlyApproved){
+            @RequestParam(name = "onlyApproved", required = false, defaultValue = "false") boolean onlyApproved){
 
         return new ResponseEntity<>(vacationRequestService.getAllVacationRequestsByUserId(userId, onlyApproved), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "addVacationRequest", method = RequestMethod.POST)
+    @RequestMapping(value = "/addVacationRequest", method = RequestMethod.POST)
     public ResponseEntity<VacationRequestResource> saveVacationRequest(@RequestBody VacationRequestResource vacationRequestResource){
         return new ResponseEntity<>(vacationRequestService.saveVacationRequestResource(vacationRequestResource), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "updateVacationRequestStatus/{vacationRequestId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateVacationRequestStatus/{vacationRequestId}", method = RequestMethod.PUT)
     public ResponseEntity<VacationRequestResource> updateVacationRequestStatus(
             @RequestBody VacationRequestStatus vacationRequestStatus,
             @PathVariable(name = "vacationRequestId") Long vacationRequestId){

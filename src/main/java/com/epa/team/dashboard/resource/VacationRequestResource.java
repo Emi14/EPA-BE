@@ -1,5 +1,6 @@
 package com.epa.team.dashboard.resource;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,9 +23,15 @@ import java.util.Date;
 public class VacationRequestResource {
 
     private Long id;
-    private Date startDate;
-    private Date endDate;
     private VacationRequestStatus vacationRequestStatus;
     private VacationRequestType vacationRequestType;
+    private UserResource user;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date startDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date endDate;
+
 
 }
