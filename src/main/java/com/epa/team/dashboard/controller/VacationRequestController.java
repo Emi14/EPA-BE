@@ -2,7 +2,6 @@ package com.epa.team.dashboard.controller;
 
 import com.epa.team.dashboard.resource.VacationRequestResource;
 import com.epa.team.dashboard.resource.VacationRequestStatus;
-import com.epa.team.dashboard.resource.VacationRequestType;
 import com.epa.team.dashboard.service.VacationRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,7 @@ public class VacationRequestController {
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public ResponseEntity<List<VacationRequestResource>> getAllVacationRequests(
-            @RequestParam(name = "type", required = false) VacationRequestType vacationRequestType,
+            @RequestParam(name = "type", required = false) String vacationRequestType,
             @RequestParam(name = "status", required = false) VacationRequestStatus vacationRequestStatus) {
         return new ResponseEntity<>(vacationRequestService.getAllVacationRequests(vacationRequestType, vacationRequestStatus),
                 HttpStatus.OK);

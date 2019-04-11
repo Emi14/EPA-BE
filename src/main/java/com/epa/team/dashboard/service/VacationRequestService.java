@@ -4,7 +4,6 @@ import com.epa.team.dashboard.model.VacationRequest;
 import com.epa.team.dashboard.repository.IVacationRequestRepository;
 import com.epa.team.dashboard.resource.VacationRequestResource;
 import com.epa.team.dashboard.resource.VacationRequestStatus;
-import com.epa.team.dashboard.resource.VacationRequestType;
 import com.epa.team.dashboard.utils.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,7 @@ public class VacationRequestService {
     @Autowired
     private Mapper mapper;
 
-    public List<VacationRequestResource> getAllVacationRequests(VacationRequestType vacationRequestType,
+    public List<VacationRequestResource> getAllVacationRequests(String vacationRequestType,
                                                                 VacationRequestStatus vacationRequestStatus) {
 
         if (Objects.isNull(vacationRequestStatus) && Objects.isNull(vacationRequestType)) {
@@ -39,7 +38,7 @@ public class VacationRequestService {
         }
     }
 
-    private List<VacationRequestResource> getFilteredVacationRequestResources(VacationRequestType vacationRequestType, VacationRequestStatus vacationRequestStatus) {
+    private List<VacationRequestResource> getFilteredVacationRequestResources(String vacationRequestType, VacationRequestStatus vacationRequestStatus) {
         if (Objects.nonNull(vacationRequestStatus) && Objects.nonNull(vacationRequestType)) {
             return mapper.mapAsList(vacationRequestRepository
                             .findAllByVacationRequestTypeAndVacationRequestStatus(vacationRequestType, vacationRequestStatus),

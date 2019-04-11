@@ -1,7 +1,6 @@
 package com.epa.team.dashboard.model;
 
 import com.epa.team.dashboard.resource.VacationRequestStatus;
-import com.epa.team.dashboard.resource.VacationRequestType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,8 +45,7 @@ public class VacationRequest {
     private VacationRequestStatus vacationRequestStatus;
 
     @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private VacationRequestType vacationRequestType;
+    private String vacationRequestType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

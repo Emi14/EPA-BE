@@ -24,7 +24,7 @@ public class VacationRequestResource {
 
     private Long id;
     private VacationRequestStatus vacationRequestStatus;
-    private VacationRequestType vacationRequestType;
+    private String vacationRequestType;
     private UserResource user;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
