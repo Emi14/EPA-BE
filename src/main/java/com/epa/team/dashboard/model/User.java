@@ -49,7 +49,7 @@ public class User {
     @Column(name = "work_from_home")
     private Boolean workFromHome;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<VacationRequest> vacationRequests;
 
 
