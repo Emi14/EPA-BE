@@ -46,7 +46,7 @@ public class User {
     @Column(name = "days_off")
     private long daysOff;
 
-    @Column(name = "work_home")
+    @Column(name = "work_from_home")
     private boolean workFromHome;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
