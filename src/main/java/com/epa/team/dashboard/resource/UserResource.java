@@ -26,7 +26,7 @@ public class UserResource {
     private String password;
     private UserRole role;
     private long daysOff;
-    private boolean workFromHome;
+    private Boolean workFromHome;
     private List<VacationRequestResource> vacationRequests = new ArrayList<>();
 
 }
