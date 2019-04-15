@@ -1,6 +1,7 @@
 package com.epa.team.dashboard.service;
 
 import com.epa.team.dashboard.model.User;
+import com.epa.team.dashboard.model.VacationRequest;
 import com.epa.team.dashboard.repository.IUserRepository;
 import com.epa.team.dashboard.resource.UserResource;
 import com.epa.team.dashboard.resource.VacationRequestResource;
@@ -50,6 +51,7 @@ public class UserService {
 
     public UserResource saveUser(UserResource userResource) {
         User userToBeSaved = mapper.map(userResource, User.class);
+        userToBeSaved.setVacationRequests(mapper.mapAsList(userResource.getVacationRequests(), VacationRequest.class));
         return mapper.map(userRepository.save(userToBeSaved), UserResource.class);
     }
 
